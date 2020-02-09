@@ -22,8 +22,13 @@ export default class UserFactory extends RequestsFactory {
    * Status: 404 Not Found - you are not following the user;
    * @param username Username on github
    */
-  checkUserFollowing(username) {
-    return this.get(`/user/following/${username}`);
+  async checkUserFollowing(username) {
+    try {
+      const result = await this.get(`/user/following/${username}`);
+      return !result;
+    } catch (error) {
+      return false;
+    }
   }
 
   /**
@@ -47,8 +52,13 @@ export default class UserFactory extends RequestsFactory {
    * Status: 404 Not Found - the user is not blocked;
    * @param username Username on github
    */
-  checkUserBlocked(username) {
-    return this.get(`/user/blocks/${username}`, this.previewBlocksApiAcceptHeader);
+  async checkUserBlocked(username) {
+    try {
+      const result = await this.get(`/user/blocks/${username}`, this.previewBlocksApiAcceptHeader);
+      return !result;
+    } catch (error) {
+      return false;
+    }
   }
 
   blockUser(username) {

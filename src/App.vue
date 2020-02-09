@@ -30,3 +30,19 @@
   }
 }
 </style>
+
+<script>
+import { mapActions } from 'vuex';
+
+export default {
+  name: 'App',
+  methods: {
+    ...mapActions('user', {
+      getUserInfo: 'getUserInfo',
+    }),
+  },
+  mounted() {
+    this.getUserInfo();
+  },
+};
+</script>

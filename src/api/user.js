@@ -5,8 +5,8 @@ export default class UserFactory extends RequestsFactory {
   // To access we must provide this custom media type in the Accept header
   previewBlocksApiAcceptHeader = { headers: { Accept: 'application/vnd.github.giant-sentry-fist-preview+json' } };
 
-  getUser() {
-    return this.get('/user');
+  getUser(username = null) {
+    return this.get(`/user${username ? `s/${username}` : ''}`);
   }
 
   getUserFollowers() {

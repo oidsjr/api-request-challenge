@@ -30,6 +30,7 @@
 .about-action-buttons {
   &__grid {
     max-width: 400px;
+    margin: 10px auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
@@ -54,6 +55,8 @@ export default {
   props: ['user'],
   methods: {
     async getUserInfo() {
+      if (!this.user || !this.user.login) return;
+
       try {
         this.loggedIsFollowingCurrent = await userFactory.checkUserFollowing(this.user.login);
         this.currentUserIsBlocked = await userFactory.checkUserBlocked(this.user.login);
@@ -62,6 +65,8 @@ export default {
       }
     },
     async startToFollow() {
+      if (!this.user || !this.user.login) return;
+
       try {
         await userFactory.followUser(this.user.login);
         this.loggedIsFollowingCurrent = true;
@@ -70,6 +75,8 @@ export default {
       }
     },
     async stopToFollow() {
+      if (!this.user || !this.user.login) return;
+
       try {
         await userFactory.unfollowUser(this.user.login);
         this.loggedIsFollowingCurrent = false;
@@ -78,6 +85,8 @@ export default {
       }
     },
     async blockUser() {
+      if (!this.user || !this.user.login) return;
+
       try {
         await userFactory.blockUser(this.user.login);
         this.currentUserIsBlocked = true;
@@ -86,6 +95,8 @@ export default {
       }
     },
     async unblockUser() {
+      if (!this.user || !this.user.login) return;
+
       try {
         await userFactory.unblockUser(this.user.login);
         this.currentUserIsBlocked = false;

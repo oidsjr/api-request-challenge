@@ -1,10 +1,6 @@
 <template>
   <nav class="navbar">
-    <img
-      v-if="this.showAvatar"
-      :alt="`Imagem de avatar de ${this.userInfo.name || 'usuário'}`"
-      :src="this.userInfo.avatar_url"
-      class="navbar__avatar avatar-image">
+    <AvatarImage :user="this.userInfo" class="navbar__avatar" />
     <ul class="navbar__list">
       <li class="navbar__list__item"><router-link to="/">Home</router-link></li>
       <li class="navbar__list__item"><router-link to="/about">About</router-link></li>
@@ -36,15 +32,16 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import AvatarImage from '@/components/AvatarImage.vue';
 
 export default {
+  components: {
+    AvatarImage,
+  },
   computed: {
     ...mapGetters('user', {
       userInfo: 'userInfo',
     }),
-    showAvatar() {
-      return this.userInfo && this.userInfo.avatar_url;
-    },
   },
 };
 </script>

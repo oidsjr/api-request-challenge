@@ -36,7 +36,7 @@ const actions = {
   async getUserInfo({ commit }) {
     try {
       const user = await userFactory.getUser();
-      commit('setUserInfo', user.data);
+      commit('setUserInfo', user);
     } catch (error) {
       console.error(error);
     }

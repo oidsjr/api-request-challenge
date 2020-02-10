@@ -14,12 +14,12 @@
 
       <button
         v-if="!this.currentUserIsBlocked"
-        class="btn btn-danger"
+        class="btn btn-outline"
         type="button"
         @click="this.blockUser">Bloquear {{ this.user.login }}</button>
       <button
         v-else
-        class="btn btn-primary"
+        class="btn btn-outline"
         type="button"
         @click="this.unblockUser">Desbloquear {{ this.user.login }}</button>
     </div>
@@ -30,10 +30,9 @@
 .about-action-buttons {
   &__grid {
     max-width: 400px;
-    margin: 10px auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+    margin: 10px 0;
+
+    .btn + .btn { margin-left: 10px; }
   }
 }
 </style>

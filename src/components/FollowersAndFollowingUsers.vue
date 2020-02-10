@@ -1,10 +1,10 @@
 <template>
   <div class="followers-and-following-users">
-    <section>
+    <section v-if="this.followers && this.followers.length">
       <h3>Seguidores</h3>
       <UsersGrid v-if="this.followers" :users="this.followers" />
     </section>
-    <section>
+    <section v-if="this.following && this.following.length">
       <h3>Seguindo</h3>
       <UsersGrid v-if="this.following" :users="this.following" />
     </section>

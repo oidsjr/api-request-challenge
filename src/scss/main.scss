@@ -44,4 +44,17 @@ h1, h2, h3, h4, h5 {
     background-color: rgb(201, 46, 18);
     color: white;
   }
+
+  &-outline {
+    background: transparent;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: rgb(0, 162, 255);
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
 }

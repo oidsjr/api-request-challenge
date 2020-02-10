@@ -23,11 +23,11 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   &__avatar {
     height: 100px;
-    margin: 15px;
+    margin: 15px 15px 15px 0;
   }
   &__username {
     text-align: left;

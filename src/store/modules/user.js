@@ -100,6 +100,7 @@ const actions = {
     try {
       await userFactory.blockUser(user.login);
       commit('addUserBlocked', user);
+      commit('removeUserFollowing', user);
     } catch (error) {
       console.error(error);
     }
@@ -131,6 +132,8 @@ const mutations = {
   },
   removeUserFollowing(state, userToUnfollow) {
     const followedIndex = state.following.indexOf((user) => user.login === userToUnfollow.login);
+    if (!followedIndex) return;
+
     state.following.splice(followedIndex, 1);
   },
   setUserBlockeds(state, blockeds) {
@@ -141,6 +144,8 @@ const mutations = {
   },
   removeUserBlocked(state, userBlocked) {
     const blockedIndex = state.blockeds.indexOf((user) => user.login === userBlocked.login);
+    if (!blockedIndex) return;
+
     state.blockeds.splice(blockedIndex, 1);
   },
 };

@@ -45,6 +45,11 @@ export default {
   props: ['user'],
   methods: {
     startToFollow() {
+      if (this.currentUserIsBlocked) {
+        // eslint-disable-next-line no-alert
+        alert('É necessário desbloquear o usuário antes de começar a segui-lo');
+        return;
+      }
       this.$store.dispatch('user/followUser', this.user);
     },
     stopToFollow() {

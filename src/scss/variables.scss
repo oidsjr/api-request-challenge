@@ -1,0 +1,15 @@
+$color--primary: rgb(0, 162, 255);
+$color--secondary: rgb(201, 46, 18);
+
+$color--dark: rgb(25, 25, 25);
+$color--dark-700: rgba($color--dark, .7);
+$color--dark-500: rgba($color--dark, .5);
+$color--dark-300: rgba($color--dark, .3);
+$color--dark-100: rgba($color--dark, .1);
+
+$color--light: #fff;
+
+$color--btn: $color--dark-100;
+$color--anchor: $color--primary;
+
+$border-radius: 4px;

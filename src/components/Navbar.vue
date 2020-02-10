@@ -11,8 +11,10 @@
 </template>
 
 <style lang="scss">
+@import "../scss/variables";
+
 .navbar {
-  background-color: rgb(25, 25, 25);
+  background-color: $color--dark;
   &__wrapper {
     max-width: 1100px;
     display: flex;
@@ -31,7 +33,7 @@
     &__item {
       padding: .5em;
       a {
-        color: #fff;
+        color: $color--light;
       }
     }
   }

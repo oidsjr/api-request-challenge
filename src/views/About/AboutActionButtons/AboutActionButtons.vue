@@ -42,23 +42,18 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'AboutActionButtons',
-  data() {
-    return {
-      currentUser: {},
-    };
-  },
   props: ['user'],
   methods: {
-    async startToFollow() {
+    startToFollow() {
       this.$store.dispatch('user/followUser', this.user);
     },
-    async stopToFollow() {
+    stopToFollow() {
       this.$store.dispatch('user/unfollowUser', this.user);
     },
-    async blockUser() {
+    blockUser() {
       this.$store.dispatch('user/blockUser', this.user);
     },
-    async unblockUser() {
+    unblockUser() {
       this.$store.dispatch('user/unblockUser', this.user);
     },
   },

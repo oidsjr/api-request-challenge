@@ -22,10 +22,16 @@ export default {
   methods: {
     ...mapActions('user', {
       getUserInfo: 'getUserInfo',
+      getUserFollowers: 'getUserFollowers',
+      getUserFollowing: 'getUserFollowing',
+      getUserBlockeds: 'getUserBlockeds',
     }),
   },
   mounted() {
     this.getUserInfo();
+    this.getUserFollowers();
+    this.getUserFollowing();
+    this.getUserBlockeds();
   },
 };
 </script>

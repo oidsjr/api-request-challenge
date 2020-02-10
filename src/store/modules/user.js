@@ -130,7 +130,8 @@ const mutations = {
     state.following.push(userToFollow);
   },
   removeUserFollowing(state, userToUnfollow) {
-    state.following = state.following.filter((user) => user.login !== userToUnfollow.login);
+    const followedIndex = state.following.indexOf((user) => user.login === userToUnfollow.login);
+    state.following.splice(followedIndex, 1);
   },
   setUserBlockeds(state, blockeds) {
     state.blockeds = blockeds;
@@ -139,7 +140,8 @@ const mutations = {
     state.blockeds.push(userToBlock);
   },
   removeUserBlocked(state, userBlocked) {
-    state.following = state.following.filter((user) => user.login !== userBlocked.login);
+    const blockedIndex = state.blockeds.indexOf((user) => user.login === userBlocked.login);
+    state.blockeds.splice(blockedIndex, 1);
   },
 };
 

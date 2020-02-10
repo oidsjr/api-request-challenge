@@ -1,12 +1,16 @@
 <template>
   <div class="followers-and-following-users">
-    <section v-if="this.followers && this.followers.length">
+    <section v-if="this.currentUserFollowers && this.currentUserFollowers.length">
       <h3>Seguidores</h3>
-      <UsersGrid v-if="this.followers" :users="this.followers" />
+      <UsersGrid v-if="this.currentUserFollowers" :users="this.currentUserFollowers" />
     </section>
-    <section v-if="this.following && this.following.length">
+    <section v-if="this.currentUserFollowing && this.currentUserFollowing.length">
       <h3>Seguindo</h3>
-      <UsersGrid v-if="this.following" :users="this.following" />
+      <UsersGrid v-if="this.currentUserFollowing" :users="this.currentUserFollowing" />
+    </section>
+    <section v-if="this.currentUserIsLogged && this.blockeds && this.blockeds.length">
+      <h3>Bloqueados</h3>
+      <UsersGrid v-if="this.blockeds" :users="this.blockeds" />
     </section>
   </div>
 </template>
@@ -21,6 +25,7 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
 import UserFactory from '@/api/user';
 import UsersGrid from '@/components/UsersGrid.vue';
 
@@ -33,22 +38,39 @@ export default {
   },
   data() {
     return {
-      followers: [],
-      following: [],
+      currentUserFollowers: [],
+      currentUserFollowing: [],
     };
   },
   props: ['username'],
   methods: {
     async getFollowersAndFollowingUsers() {
-      this.followers = [];
-      this.following = [];
+      this.currentUserFollowers = [];
+      this.currentUserFollowing = [];
+
+      if (this.currentUserIsLogged) {
+        this.currentUserFollowers = this.followers;
+        this.currentUserFollowing = this.following;
+        return;
+      }
 
       try {
-        this.followers = await userFactory.getUserFollowers(this.username);
-        this.following = await userFactory.getUserFollowing(this.username);
+        this.currentUserFollowers = await userFactory.getUserFollowers(this.username);
+        this.currentUserFollowing = await userFactory.getUserFollowing(this.username);
       } catch (error) {
         console.error(error);
       }
+    },
+  },
+  computed: {
+    ...mapGetters('user', {
+      userInfo: 'userInfo',
+      following: 'following',
+      followers: 'followers',
+      blockeds: 'blockeds',
+    }),
+    currentUserIsLogged() {
+      return !this.username || this.username === this.userInfo.login;
     },
   },
   mounted() {

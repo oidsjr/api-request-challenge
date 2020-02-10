@@ -9,12 +9,12 @@ export default class UserFactory extends RequestsFactory {
     return this.get(`/user${username ? `s/${username}` : ''}`);
   }
 
-  getUserFollowers() {
-    return this.get('/user/followers');
+  getUserFollowers(username = null) {
+    return this.get(`/user${username ? `s/${username}` : ''}/followers`);
   }
 
-  getUserFollowing() {
-    return this.get('/user/following');
+  getUserFollowing(username = null) {
+    return this.get(`/user${username ? `s/${username}` : ''}/following`);
   }
 
   /**

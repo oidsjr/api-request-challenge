@@ -1,13 +1,19 @@
 <template>
-  <section class="about" v-if="!!this.currentUser">
+  <main class="about" v-if="!!this.currentUser">
     <BasicUserInfo :user="this.currentUser" />
-    <AboutActionButtons v-if="!this.currentUserIsLogged" :user="this.currentUser" />
-  </section>
+    <AboutActionButtons
+      v-if="!this.currentUserIsLogged"
+      :key="this.currentUser.id"
+      :user="this.currentUser" />
+    <FollowersAndFollowingUsers :username="this.username" />
+  </main>
 </template>
 
 <style lang="scss">
 .about {
   max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 </style>
 
@@ -15,6 +21,7 @@
 import { mapGetters } from 'vuex';
 import UserFactory from '@/api/user';
 import BasicUserInfo from '@/components/BasicUserInfo.vue';
+import FollowersAndFollowingUsers from '@/components/FollowersAndFollowingUsers.vue';
 import AboutActionButtons from './AboutActionButtons';
 
 const userFactory = new UserFactory();
@@ -24,6 +31,7 @@ export default {
   components: {
     AboutActionButtons,
     BasicUserInfo,
+    FollowersAndFollowingUsers,
   },
   data() {
     return {
@@ -36,11 +44,12 @@ export default {
       userInfo: 'userInfo',
     }),
     currentUserIsLogged() {
-      return !this.username || this.username === this.userInfo.username;
+      return !this.username || this.username === this.userInfo.login;
     },
   },
   methods: {
     async getUserFromUsernamePropOrCurrent() {
+      this.currentUser = {};
       // if has no username or is equal logged user
       // uses logged user info
       if (this.currentUserIsLogged) {
@@ -57,6 +66,11 @@ export default {
   },
   mounted() {
     this.getUserFromUsernamePropOrCurrent();
+  },
+  watch: {
+    username() {
+      this.getUserFromUsernamePropOrCurrent();
+    },
   },
 };
 </script>

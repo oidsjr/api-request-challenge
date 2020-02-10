@@ -9,6 +9,7 @@
 <style lang="scss" scoped>
 .avatar-image {
   border-radius: 50px;
+  max-width: 100%;
 }
 </style>
 

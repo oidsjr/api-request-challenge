@@ -13,7 +13,7 @@
         @click="this.stopToFollow">Parar de seguir {{ this.user.login }}</button>
 
       <button
-        v-if="!this.userIsBlocked"
+        v-if="!this.currentUserIsBlocked"
         class="btn btn-danger"
         type="button"
         @click="this.blockUser">Bloquear {{ this.user.login }}</button>

@@ -38,74 +38,41 @@
 </style>
 
 <script>
-import UserFactory from '@/api/user';
-
-const userFactory = new UserFactory();
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'AboutActionButtons',
   data() {
     return {
       currentUser: {},
-      loggedIsFollowingCurrent: false,
-      currentUserIsBlocked: false,
     };
   },
   props: ['user'],
   methods: {
-    async getUserInfo() {
-      if (!this.user || !this.user.login) return;
-
-      try {
-        this.loggedIsFollowingCurrent = await userFactory.checkUserFollowing(this.user.login);
-        this.currentUserIsBlocked = await userFactory.checkUserBlocked(this.user.login);
-      } catch (error) {
-        console.error(error);
-      }
-    },
     async startToFollow() {
-      if (!this.user || !this.user.login) return;
-
-      try {
-        await userFactory.followUser(this.user.login);
-        this.loggedIsFollowingCurrent = true;
-      } catch (error) {
-        console.error(error);
-      }
+      this.$store.dispatch('user/followUser', this.user);
     },
     async stopToFollow() {
-      if (!this.user || !this.user.login) return;
-
-      try {
-        await userFactory.unfollowUser(this.user.login);
-        this.loggedIsFollowingCurrent = false;
-      } catch (error) {
-        console.error(error);
-      }
+      this.$store.dispatch('user/unfollowUser', this.user);
     },
     async blockUser() {
-      if (!this.user || !this.user.login) return;
-
-      try {
-        await userFactory.blockUser(this.user.login);
-        this.currentUserIsBlocked = true;
-      } catch (error) {
-        console.error(error);
-      }
+      this.$store.dispatch('user/blockUser', this.user);
     },
     async unblockUser() {
-      if (!this.user || !this.user.login) return;
-
-      try {
-        await userFactory.unblockUser(this.user.login);
-        this.currentUserIsBlocked = false;
-      } catch (error) {
-        console.error(error);
-      }
+      this.$store.dispatch('user/unblockUser', this.user);
     },
   },
-  mounted() {
-    this.getUserInfo();
+  computed: {
+    ...mapGetters('user', {
+      following: 'following',
+      blockeds: 'blockeds',
+    }),
+    loggedIsFollowingCurrent() {
+      return !!this.following.find((user) => user.login === this.user.login);
+    },
+    currentUserIsBlocked() {
+      return !!this.blockeds.find((user) => user.login === this.user.login);
+    },
   },
 };
 </script>

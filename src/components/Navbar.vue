@@ -1,23 +1,28 @@
 <template>
   <nav class="navbar">
-    <AvatarImage :user="this.userInfo" class="navbar__avatar" />
-    <ul class="navbar__list">
-      <li class="navbar__list__item"><router-link to="/">Home</router-link></li>
-      <li class="navbar__list__item"><router-link to="/about">About</router-link></li>
-    </ul>
+    <div class="navbar__wrapper">
+      <AvatarImage :user="this.userInfo" class="navbar__avatar" />
+      <ul class="navbar__list">
+        <li class="navbar__list__item"><router-link to="/">Home</router-link></li>
+        <li class="navbar__list__item"><router-link to="/about">About</router-link></li>
+      </ul>
+    </div>
   </nav>
 </template>
 
 <style lang="scss">
 .navbar {
-  display: flex;
-  align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 5px;
+  background-color: rgb(25, 25, 25);
+  &__wrapper {
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 5px;
+  }
   &__avatar {
     width: auto;
-    height: 50px;
+    height: 45px;
     margin-right: 10px;
   }
   &__list {
@@ -25,6 +30,9 @@
     align-items: center;
     &__item {
       padding: .5em;
+      a {
+        color: #fff;
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <main class="about" v-if="!!this.currentUser">
+  <main class="about main" v-if="!!this.currentUser">
     <BasicUserInfo :user="this.currentUser" />
     <AboutActionButtons
       v-if="!this.currentUserIsLogged"
@@ -8,15 +8,6 @@
     <FollowersAndFollowingUsers :username="this.username" />
   </main>
 </template>
-
-<style lang="scss">
-.about {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 15px;
-  text-align: left;
-}
-</style>
 
 <script>
 import { mapGetters } from 'vuex';

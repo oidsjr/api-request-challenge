@@ -12,8 +12,14 @@ img {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
+}
+
+.main {
+  max-width: $max-main-width;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 h1, h2, h3, h4, h5 {

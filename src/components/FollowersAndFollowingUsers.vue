@@ -1,15 +1,15 @@
 <template>
   <div class="followers-and-following-users">
     <section v-if="this.currentUserFollowers && this.currentUserFollowers.length">
-      <h3>Seguidores</h3>
+      <h3>Followers</h3>
       <UsersGrid v-if="this.currentUserFollowers" :users="this.currentUserFollowers" />
     </section>
     <section v-if="this.currentUserFollowing && this.currentUserFollowing.length">
-      <h3>Seguindo</h3>
+      <h3>Following</h3>
       <UsersGrid v-if="this.currentUserFollowing" :users="this.currentUserFollowing" />
     </section>
     <section v-if="this.currentUserIsLogged && this.blockeds && this.blockeds.length">
-      <h3>Bloqueados</h3>
+      <h3>Blocks</h3>
       <UsersGrid v-if="this.blockeds" :users="this.blockeds" />
     </section>
   </div>

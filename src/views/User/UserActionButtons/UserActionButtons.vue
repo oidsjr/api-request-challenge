@@ -5,23 +5,23 @@
         v-if="!this.loggedIsFollowingCurrent"
         class="btn btn-primary"
         type="button"
-        @click="this.startToFollow">Seguir {{ this.user.login }}</button>
+        @click="this.startToFollow">Follow {{ this.user.login }}</button>
       <button
         v-else
         class="btn btn-danger"
         type="button"
-        @click="this.stopToFollow">Parar de seguir {{ this.user.login }}</button>
+        @click="this.stopToFollow">Stop following {{ this.user.login }}</button>
 
       <button
         v-if="!this.currentUserIsBlocked"
         class="btn btn-outline"
         type="button"
-        @click="this.blockUser">Bloquear {{ this.user.login }}</button>
+        @click="this.blockUser">Block {{ this.user.login }}</button>
       <button
         v-else
         class="btn btn-outline"
         type="button"
-        @click="this.unblockUser">Desbloquear {{ this.user.login }}</button>
+        @click="this.unblockUser">Unblock {{ this.user.login }}</button>
     </div>
   </div>
 </template>
@@ -47,7 +47,7 @@ export default {
     startToFollow() {
       if (this.currentUserIsBlocked) {
         // eslint-disable-next-line no-alert
-        alert('É necessário desbloquear o usuário antes de começar a segui-lo');
+        alert(`You can't follow @${this.user.login}, the user is on your block list.`);
         return;
       }
       this.$store.dispatch('user/followUser', this.user);

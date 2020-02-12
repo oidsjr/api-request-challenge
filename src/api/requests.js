@@ -15,6 +15,11 @@ export default class RequestsFactory {
     this.defaultConfig.headers.Authorization = `token ${this.token}`;
   }
 
+  clearToken() {
+    localStorage.removeItem('github_token');
+    this.defaultConfig.headers.Authorization = null;
+  }
+
   baseUrl = 'https://api.github.com';
 
   getHeaders(headers) {

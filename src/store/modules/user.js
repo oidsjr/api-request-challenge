@@ -2,8 +2,7 @@ import UserFactory from '@/api/user';
 
 let userFactory = new UserFactory();
 
-// initial state
-const initialState = {
+const getInitialState = () => ({
   user: {
     login: null,
     id: 0,
@@ -25,7 +24,10 @@ const initialState = {
   following: [],
   followers: [],
   blockeds: [],
-};
+});
+
+// initial state
+const initialState = getInitialState();
 
 // getters
 const getters = {
@@ -131,6 +133,10 @@ const actions = {
       console.error(error);
     }
   },
+  clearToken({ commit }) {
+    userFactory.clearToken();
+    commit('clearToken');
+  },
 };
 
 // mutations
@@ -164,6 +170,9 @@ const mutations = {
     if (!blockedIndex) return;
 
     state.blockeds.splice(blockedIndex, 1);
+  },
+  clearToken(state) {
+    Object.assign(state, getInitialState());
   },
 };
 

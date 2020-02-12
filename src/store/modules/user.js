@@ -1,6 +1,6 @@
 import UserFactory from '@/api/user';
 
-const userFactory = new UserFactory();
+let userFactory = new UserFactory();
 
 // initial state
 const initialState = {
@@ -29,6 +29,12 @@ const initialState = {
 
 // getters
 const getters = {
+  accessToken() {
+    return userFactory.token;
+  },
+  isLogged() {
+    return !!this.initialState.user && !!this.initialState.user.login;
+  },
   userInfo() {
     return initialState.user;
   },
@@ -45,7 +51,9 @@ const getters = {
 
 // actions
 const actions = {
-  async getUserInfo({ commit }) {
+  async getUserInfo({ commit }, token) {
+    userFactory = new UserFactory(token);
+
     try {
       const user = await userFactory.getUser();
       commit('setUserInfo', user);

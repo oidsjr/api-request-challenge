@@ -1,14 +1,21 @@
 import axios from 'axios';
 
 export default class RequestsFactory {
-  baseUrl = 'https://api.github.com';
+  constructor(token = localStorage.getItem('github_token')) {
+    this.token = token;
+    localStorage.setItem('github_token', this.token || '');
 
-  defaultConfig = {
-    headers: {
-      Accept: 'application/vnd.github.v3+json',
-      Authorization: `token ${process.env.VUE_APP_GITHUB_TOKEN}`,
-    },
-  };
+    this.defaultConfig = {
+      headers: {
+        Accept: 'application/vnd.github.v3+json',
+      },
+    };
+
+    if (!this.token) return;
+    this.defaultConfig.headers.Authorization = `token ${this.token}`;
+  }
+
+  baseUrl = 'https://api.github.com';
 
   getHeaders(headers) {
     return { ...this.defaultConfig.headers, ...headers };

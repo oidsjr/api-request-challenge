@@ -1,6 +1,6 @@
 <template>
-  <div class="about-action-buttons">
-    <div class="about-action-buttons__grid">
+  <div class="user-action-buttons">
+    <div class="user-action-buttons__grid">
       <button
         v-if="!this.loggedIsFollowingCurrent"
         class="btn btn-primary"
@@ -27,7 +27,7 @@
 </template>
 
 <style lang="scss" scoped>
-.about-action-buttons {
+.user-action-buttons {
   &__grid {
     max-width: 400px;
     margin: 10px 0;
@@ -41,7 +41,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'AboutActionButtons',
+  name: 'UserActionButtons',
   props: ['user'],
   methods: {
     startToFollow() {

@@ -1,8 +1,8 @@
 <template>
-  <main class="about main" v-if="!!this.currentUser">
+  <main class="user main" v-if="!!this.currentUser">
     <BasicUserInfo :user="this.currentUser" />
-    <AboutActionButtons
-      v-if="!this.currentUserIsLogged"
+    <UserActionButtons
+      v-if="this.isLogged && !this.currentUserIsLogged"
       :key="this.currentUser.id"
       :user="this.currentUser" />
     <FollowersAndFollowingUsers :username="this.username" />
@@ -14,14 +14,14 @@ import { mapGetters } from 'vuex';
 import UserFactory from '@/api/user';
 import BasicUserInfo from '@/components/BasicUserInfo.vue';
 import FollowersAndFollowingUsers from '@/components/FollowersAndFollowingUsers.vue';
-import AboutActionButtons from './AboutActionButtons';
+import UserActionButtons from './UserActionButtons';
 
 const userFactory = new UserFactory();
 
 export default {
-  name: 'About',
+  name: 'User',
   components: {
-    AboutActionButtons,
+    UserActionButtons,
     BasicUserInfo,
     FollowersAndFollowingUsers,
   },
@@ -34,6 +34,7 @@ export default {
   computed: {
     ...mapGetters('user', {
       userInfo: 'userInfo',
+      isLogged: 'isLogged',
     }),
     currentUserIsLogged() {
       return !this.username || this.username === this.userInfo.login;

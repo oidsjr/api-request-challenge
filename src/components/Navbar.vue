@@ -3,8 +3,8 @@
     <div class="navbar__wrapper">
       <AvatarImage :user="this.userInfo" class="navbar__avatar" />
       <ul class="navbar__list">
-        <li class="navbar__list__item"><router-link to="/">Home</router-link></li>
-        <li class="navbar__list__item"><router-link to="/about">About</router-link></li>
+        <li class="navbar__list__item"><router-link to="/">Access</router-link></li>
+        <li class="navbar__list__item"><router-link to="/user">User</router-link></li>
       </ul>
     </div>
   </nav>

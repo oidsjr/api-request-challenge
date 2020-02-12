@@ -3,7 +3,7 @@
     <router-link
       v-for="user of this.users"
       :key="user.id"
-      :to="`/about/${user.login}`">
+      :to="`/user/${user.login}`">
       <AvatarImage :user="user" />
     </router-link>
   </div>

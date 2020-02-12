@@ -11,7 +11,7 @@
 </style>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import Navbar from '@/components/Navbar.vue';
 
 export default {
@@ -19,19 +19,22 @@ export default {
   components: {
     Navbar,
   },
-  methods: {
-    ...mapActions('user', {
-      getUserInfo: 'getUserInfo',
-      getUserFollowers: 'getUserFollowers',
-      getUserFollowing: 'getUserFollowing',
-      getUserBlockeds: 'getUserBlockeds',
+  computed: {
+    ...mapGetters('user', {
+      accessToken: 'accessToken',
     }),
   },
+  methods: {
+    ...mapActions('user', {
+      getUser: 'getUser',
+    }),
+    findIfExistsTokenInStore() {
+      if (!this.accessToken) return;
+      this.getUser(this.accessToken);
+    },
+  },
   mounted() {
-    this.getUserInfo();
-    this.getUserFollowers();
-    this.getUserFollowing();
-    this.getUserBlockeds();
+    this.findIfExistsTokenInStore();
   },
 };
 </script>

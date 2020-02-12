@@ -1,19 +1,19 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import AccessPage from '../views/AccessPage.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'AccessPage',
+    component: AccessPage,
   },
   {
-    path: '/about/:username?',
-    name: 'About',
-    component: () => import('../views/About'),
+    path: '/user/:username?',
+    name: 'User',
+    component: () => import('../views/User'),
     props: true,
   },
 ];

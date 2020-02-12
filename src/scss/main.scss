@@ -58,6 +58,14 @@ h1, h2, h3, h4, h5 {
   }
 }
 
+.input {
+  padding: .4em;
+  border: 1px solid $color--dark-100;
+  border-radius: $border-radius;
+  background-color: white;
+  color: $color--dark;
+}
+
 a {
   text-decoration: none;
   color: $color--anchor;

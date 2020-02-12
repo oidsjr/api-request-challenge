@@ -1,20 +1,26 @@
 <template>
-  <div class="basic-user-info" v-if="!!this.user">
-    <AvatarImage :user="this.user" class="basic-user-info__avatar" />
-    <div class="basic-user-info__username">
-      <h1>{{ this.user.name }}</h1>
-      <p><a
-        :href="this.user.html_url"
-        target="_blank"
-        rel="noreferrer">@{{ this.user.login }}</a></p>
-    </div>
-    <div class="basic-user-info__basics" v-if="this.showBasics">
-      <address>
-        {{ this.user.email }}<br v-if="this.user.email && this.user.location" />
-        {{ this.user.location }}
-      </address>
-      <blockquote v-if="this.user.bio">{{ this.user.bio }}</blockquote>
-    </div>
+  <div class="basic-user-info">
+    <template  v-if="!!this.user && !!this.user.login">
+      <AvatarImage :user="this.user" class="basic-user-info__avatar" />
+      <div class="basic-user-info__username">
+        <h3>{{ this.user.name }}</h3>
+        <p><a
+          :href="this.user.html_url"
+          target="_blank"
+          rel="noreferrer">@{{ this.user.login }}</a></p>
+      </div>
+      <div class="basic-user-info__basics" v-if="this.showBasics">
+        <address>
+          {{ this.user.email }}<br v-if="this.user.email && this.user.location" />
+          {{ this.user.location }}
+        </address>
+        <blockquote v-if="this.user.bio">{{ this.user.bio }}</blockquote>
+      </div>
+    </template>
+    <template v-else>
+      <h3 class="basic-user-info__no-user">
+        {{ this.noUserMessage || 'Usuário não encontrado!' }}</h3>
+    </template>
   </div>
 </template>
 
@@ -42,6 +48,10 @@
     margin-top: 15px;
     width: 100%;
   }
+
+  &__no-user {
+    margin: 0;
+  }
 }
 </style>
 
@@ -53,7 +63,7 @@ export default {
   components: {
     AvatarImage,
   },
-  props: ['user'],
+  props: ['user', 'noUserMessage'],
   computed: {
     showAvatar() {
       return !!this.user && !!this.user.avatar_url;

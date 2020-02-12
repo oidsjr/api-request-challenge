@@ -33,7 +33,7 @@ const getters = {
     return userFactory.token;
   },
   isLogged() {
-    return !!this.initialState.user && !!this.initialState.user.login;
+    return !!initialState.user && !!initialState.user.login;
   },
   userInfo() {
     return initialState.user;
@@ -51,6 +51,12 @@ const getters = {
 
 // actions
 const actions = {
+  getUser({ dispatch }, token) {
+    dispatch('getUserInfo', token);
+    dispatch('getUserFollowers');
+    dispatch('getUserFollowing');
+    dispatch('getUserBlockeds');
+  },
   async getUserInfo({ commit }, token) {
     userFactory = new UserFactory(token);
 

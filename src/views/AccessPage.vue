@@ -22,7 +22,7 @@
         class="input"
         placeholder="Type your GitHub access token"
         v-model="githubToken">
-      <input type="submit" class="btn btn-primary" value="Buscar">
+      <input type="submit" class="btn btn-primary" value="Go">
     </form>
   </main>
 </template>

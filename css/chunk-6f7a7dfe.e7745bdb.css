@@ -1,0 +1,1 @@
+.users-grid{display:grid;grid-gap:5px;grid-template-columns:repeat(auto-fit,25px)}.followers-and-following-users{display:grid;grid-gap:10px;margin:30px 0;text-align:left}.user-action-buttons__grid[data-v-6b9fa623]{max-width:400px;margin:10px 0}.user-action-buttons__grid .btn+.btn[data-v-6b9fa623]{margin-left:10px}

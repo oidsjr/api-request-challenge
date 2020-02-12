@@ -57,14 +57,17 @@ const actions = {
     dispatch('getUserFollowing');
     dispatch('getUserBlockeds');
   },
-  async getUserInfo({ commit }, token) {
+  async getUserInfo({ commit, dispatch }, token) {
     userFactory = new UserFactory(token);
-
     try {
+      dispatch('global/setIsLoading', true, { root: true });
+
       const user = await userFactory.getUser();
       commit('setUserInfo', user);
     } catch (error) {
       console.error(error);
+    } finally {
+      dispatch('global/setIsLoading', false, { root: true });
     }
   },
   async getUserFollowers({ commit }) {

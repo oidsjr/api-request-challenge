@@ -2,6 +2,7 @@
   <div id="app">
     <Navbar />
     <router-view/>
+    <Loader />
   </div>
 </template>
 
@@ -13,11 +14,13 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import Navbar from '@/components/Navbar.vue';
+import Loader from '@/components/Loader.vue';
 
 export default {
   name: 'App',
   components: {
     Navbar,
+    Loader,
   },
   computed: {
     ...mapGetters('user', {

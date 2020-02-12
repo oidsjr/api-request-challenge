@@ -1,7 +1,7 @@
 <template>
   <img
     v-if="this.showAvatar"
-    :alt="`Imagem de avatar de ${this.user.name || 'usuário'}`"
+    :alt="`Avatar image of ${this.user.name || 'user'}`"
     :src="this.user.avatar_url"
     class="avatar-image">
 </template>

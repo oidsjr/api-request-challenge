@@ -19,7 +19,7 @@
     </template>
     <template v-else>
       <h3 class="basic-user-info__no-user">
-        {{ this.noUserMessage || 'Usuário não encontrado!' }}</h3>
+        {{ this.noUserMessage || 'User not found!' }}</h3>
     </template>
   </div>
 </template>

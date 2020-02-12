@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import UserFactory from '@/api/user';
 import BasicUserInfo from '@/components/BasicUserInfo.vue';
 import FollowersAndFollowingUsers from '@/components/FollowersAndFollowingUsers.vue';
@@ -41,6 +41,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions('global', {
+      setIsLoading: 'setIsLoading',
+    }),
     async getUserFromUsernamePropOrCurrent() {
       this.currentUser = {};
       // if has no username or is equal logged user
@@ -51,9 +54,12 @@ export default {
       }
 
       try {
+        this.setIsLoading(true);
         this.currentUser = await userFactory.getUser(this.username);
       } catch (error) {
         console.error(error);
+      } finally {
+        this.setIsLoading(false);
       }
     },
   },
